@@ -1,9 +1,9 @@
 import numpy as np
-import numba
+#import numba
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
-@numba.jit(nopython=True)
+#@numba.jit(nopython=True)
 def top_sparse3_numba(x_indices, x_vals, out, beta, factor, A, B, C):
     # In einstein notation with factor=0 this is 'bz,cz,abc->az'
     # In einstein notation with factor=1 this is 'az,cz,abc->bz'
@@ -51,7 +51,7 @@ def top_sparse3_numba(x_indices, x_vals, out, beta, factor, A, B, C):
                 out[c, k] += temp
 
 
-@numba.jit(nopython=True)
+#@numba.jit(nopython=True)
 def bot_sparse3_numba(x_indices, x_vals, out, beta, factor, A, B, C):
     K = A.shape[1]
     rows = x_indices.shape[0]
@@ -165,7 +165,7 @@ def parafac(factors):
     return np.einsum(request, *factors, dtype=np.float32)
 
 
-@numba.jit(nopython=True)
+#@numba.jit(nopython=True)
 def parafac_sparse(x_indices, b_vals, A, B, C):
     rows = x_indices.shape[0]
     K = A.shape[1]
